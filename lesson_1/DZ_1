@@ -1,0 +1,54 @@
+import random
+import time
+
+# === 1. Генерация массива с range и случайным шагом ===
+# Числа от 10 до 250_000_000 с шагом от 3 до 5
+step = random.randint(3, 5)
+arr = list(range(10, 250_000_000, step))
+print(f"Массив создан. Количество элементов: {len(arr)}, шаг: {step}")
+
+# === 2. Случайные числа через list comprehension ===
+random_nums = [random.randint(10, 250_000_000) for _ in range(10)]
+print("Случайные числа:", random_nums)
+
+# === 3. Линейный поиск ===
+def linear_search(arr, target):
+    """Простой перебор массива"""
+    for i, val in enumerate(arr):
+        if val == target:
+            return i
+    return -1
+
+# === 4. Бинарный поиск ===
+def binary_search(arr, target):
+    """Классический бинарный поиск"""
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+# === 5. Проверка времени работы ===
+for num in random_nums:
+    # Линейный поиск
+    start = time.time()
+    idx_lin = linear_search(arr, num)
+    end = time.time()
+    lin_time = end - start
+
+    # Бинарный поиск
+    start = time.time()
+    idx_bin = binary_search(arr, num)
+    end = time.time()
+    bin_time = end - start
+
+    print(f"\nЧисло {num}:")
+    print(f"  Линейный поиск -> индекс {idx_lin}, время {lin_time:.6f} сек")
+    print(f"  Бинарный поиск -> индекс {idx_bin}, время {bin_time:.6f} сек")
+
+    
