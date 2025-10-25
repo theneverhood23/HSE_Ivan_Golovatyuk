@@ -115,8 +115,6 @@ class ParserCBRF:
                 continue
         return data
 
-
-# Пример использования (вставь это в конец файла, после класса)
 if __name__ == "__main__":
     parser = ParserCBRF()
     
