@@ -115,3 +115,17 @@ class ParserCBRF:
                 continue
         return data
 
+
+# Пример использования (вставь это в конец файла, после класса)
+if __name__ == "__main__":
+    parser = ParserCBRF()
+    
+    # Пример для URL (собирает данные с сайта ЦБ РФ)
+    try:
+        data_url = parser.start('https://www.cbr.ru/hd_base/KeyRate/')
+        print("Данные с URL:")
+        for date, rate in sorted(data_url.items()):
+            print(f"{date}: {rate}%")
+    except Exception as e:
+        print(f"Ошибка при парсинге URL: {e}")
+
